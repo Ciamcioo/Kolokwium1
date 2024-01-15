@@ -139,7 +139,8 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
      */
     private void moveShape(Shape shape, int deltaX, int deltaY) {
         if (shape instanceof RectangularShape recShape)
-            recShape.setFrame(recShape.getX() + deltaX, recShape.getY() + deltaY, recShape.getWidth(), recShape.getHeight());
+            if (recShape.getX() + deltaX <= this.getWidth() - recShape.getWidth() && recShape.getX() + deltaX >= 0 && recShape.getY() + deltaY >= 0 && recShape.getY() + deltaY <= this.getHeight() - recShape.getHeight())
+                recShape.setFrame(recShape.getX() + deltaX, recShape.getY() + deltaY, recShape.getWidth(), recShape.getHeight());
         else if (shape instanceof Line2D line)
             line.setLine(line.getX1() + deltaX, line.getY1() + deltaY, line.getX2() + deltaX, line.getY2() + deltaY);
         else  {
