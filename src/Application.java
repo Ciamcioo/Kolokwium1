@@ -82,12 +82,6 @@ public class Application {
             drawPanel.setDrawMode(true);
             switch (button.getText()) {
                 case "Rectangle" -> drawPanel.setFigureType(ButtonConst.RECTANGLE);
-                case "Circle" -> drawPanel.setFigureType(ButtonConst.CIRCLE);
-                case "Line" -> {
-                    drawPanel.setDrawMode(false);
-                    drawPanel.setFigureType(ButtonConst.LINE);
-                }
-                case "Ellipse" -> drawPanel.setFigureType(ButtonConst.ELLIPSE);
                 case "Select" -> {
                     drawPanel.setDrawMode(false);
                     drawPanel.setSelectMode();

@@ -12,13 +12,12 @@ import static java.awt.event.KeyEvent.*;
 
 public class DrawPanel extends JPanel implements MouseListener, MouseMotionListener, MouseWheelListener, KeyListener {
     private int figureType = 3;
-    private RectangleThread selectedRectangle = null;
+    private Shape selectedShape;
     private final ArrayList<Shape> shapeList = new ArrayList<>(), selectedShapes = new ArrayList<>();
-    private final ArrayList<RectangleThread> rectangleList = new ArrayList<>();
-    private boolean drawMode = false, selectMode = false;
+    private Rectangle selectionBox;
+    private boolean drawMode = false, selectMode = false, isColorKeyPressed = false;
     private final Set<Integer> pressedKeySet = new HashSet<>();
     private Point2D startPoint, endPoint;
-    private RectangleThread currentShape;
 
     /**
      * Constructor of DrawPanel class which sets default look of component, create listeners and change visibility of Panel.
@@ -92,7 +91,8 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     private void createShape() {
         Shape currentShape;
         switch (figureType) {
-            case ButtonConst.RECTANGLE -> currentSHape = new RectangleThread(startPoint.getX(), startPoint.getY(), endPoint.getX() - startPoint.getX(), endPoint.getY() - startPoint.getY());
+            case ButtonConst.RECTANGLE -> currentShape = new Rectangle2D.Double(startPoint.getX(), startPoint.getY(), endPoint.getX() - startPoint.getX(), endPoint.getY() - startPoint.getY());
+            case ButtonConst.ELLIPSE -> currentShape = new Ellipse2D.Double(startPoint.getX(), startPoint.getY(), endPoint.getX() - startPoint.getX(), endPoint.getY() - startPoint.getY());
             default -> currentShape = null;
         }
         shapeList.add(currentShape);
